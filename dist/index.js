@@ -35,7 +35,6 @@ app.post('/api/verify', (req, res) => __awaiter(void 0, void 0, void 0, function
         credential = req.body;
     }
     try {
-        console.log(credential);
         const result = yield (0, validate_1.verifyCredential)(credential);
         res.status(200).json({ result });
     }

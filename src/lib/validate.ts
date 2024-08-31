@@ -1,15 +1,17 @@
 import { Ed25519Signature2020 } from '@digitalcredentials/ed25519-signature-2020';
 import { purposes } from '@digitalcredentials/jsonld-signatures';
 import { checkStatus } from '@digitalcredentials/vc-status-list';
-import vc from '@digitalcredentials/vc';
+import * as vc from '@digitalcredentials/vc';
 import { VerifiablePresentation, PresentationError } from '../types/presentation';
 import { VerifiableCredential, CredentialError, CredentialErrorTypes } from '../types/credential';
 import { securityLoader } from '@digitalcredentials/security-document-loader';
 import { extractCredentialsFrom } from './verifiableObject';
-// import { registryCollections, Registry } from '@digitalcredentials/issuer-registry-client';
 const documentLoader = securityLoader({ fetchRemoteContexts: true }).build()
 const suite = new Ed25519Signature2020();
 const presentationPurpose = new purposes.AssertionProofPurpose();
+
+
+
 
 export type ResultLog = {
   id: string,
@@ -34,6 +36,7 @@ export async function verifyPresentation(
   unsignedPresentation = true,
 ): Promise<VerifyResponse> {
   try {
+    console.log('presentation', presentation);
     const result = await vc.verify({
       presentation,
       presentationPurpose,
@@ -75,6 +78,7 @@ export async function verifyCredential(credential: VerifiableCredential): Promis
 
   try {
     const hasRevocation = extractCredentialsFrom(credential)?.find(vc => vc.credentialStatus);
+    console.log('vc', vc);
     const result = await vc.verifyCredential({
       credential,
       suite,

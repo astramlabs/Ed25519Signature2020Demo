@@ -25,7 +25,6 @@ app.post('/api/verify', async (req: Request, res: Response) => {
   }
 
   try {
-    console.log(credential);
     const result = await verifyCredential(credential);
     res.status(200).json({ result });
   } catch (error) {

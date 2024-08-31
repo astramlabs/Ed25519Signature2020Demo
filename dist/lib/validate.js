@@ -18,8 +18,8 @@ const ed25519_signature_2020_1 = require("@digitalcredentials/ed25519-signature-
 const jsonld_signatures_1 = require("@digitalcredentials/jsonld-signatures");
 const vc_status_list_1 = require("@digitalcredentials/vc-status-list");
 const vc_1 = __importDefault(require("@digitalcredentials/vc"));
-const presentation_1 = require("types/presentation");
-const credential_1 = require("types/credential");
+const presentation_1 = require("../types/presentation");
+const credential_1 = require("../types/credential");
 const security_document_loader_1 = require("@digitalcredentials/security-document-loader");
 const verifiableObject_1 = require("./verifiableObject");
 // import { registryCollections, Registry } from '@digitalcredentials/issuer-registry-client';
@@ -29,6 +29,7 @@ const presentationPurpose = new jsonld_signatures_1.purposes.AssertionProofPurpo
 function verifyPresentation(presentation_2) {
     return __awaiter(this, arguments, void 0, function* (presentation, unsignedPresentation = true) {
         try {
+            console.log('presentation', presentation);
             const result = yield vc_1.default.verify({
                 presentation,
                 presentationPurpose,
@@ -48,6 +49,7 @@ function verifyPresentation(presentation_2) {
 function verifyCredential(credential) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a, _b, _c;
+        console.log('credential', credential);
         const { issuer } = credential;
         const { malformed, message } = checkMalformed(credential);
         if (malformed) {
