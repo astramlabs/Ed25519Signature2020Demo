@@ -36,7 +36,6 @@ export async function verifyPresentation(
   unsignedPresentation = true,
 ): Promise<VerifyResponse> {
   try {
-    console.log('presentation', presentation);
     const result = await vc.verify({
       presentation,
       presentationPurpose,
@@ -78,7 +77,6 @@ export async function verifyCredential(credential: VerifiableCredential): Promis
 
   try {
     const hasRevocation = extractCredentialsFrom(credential)?.find(vc => vc.credentialStatus);
-    console.log('vc', vc);
     const result = await vc.verifyCredential({
       credential,
       suite,
