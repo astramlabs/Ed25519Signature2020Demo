@@ -8,4 +8,5 @@ declare module '@digitalcredentials/jsonld-signatures';
 declare module '@digitalcredentials/vc-status-list';
 declare module 'json-canonicalize';
 declare module 'uuid';
+declare module '@digitalcredentials/jsonld';
 

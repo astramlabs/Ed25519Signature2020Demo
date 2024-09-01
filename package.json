@@ -11,6 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@digitalcredentials/ed25519-verification-key-2020": "^4.0.0",
+    "@digitalcredentials/jsonld": "^9.0.0",
     "@digitalcredentials/security-document-loader": "^6.0.0",
     "body-parser": "^1.20.2",
     "express": "^4.19.2"

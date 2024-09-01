@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import { verifyCredential } from './lib/validate';
 import { VerifiableCredential } from './types/credential';
 
+import {verifyCredentialWrapper} from './methods/main';
+
 const app = express();
 const port = 3000;
 
@@ -13,6 +15,8 @@ app.use(bodyParser.text());
 // POST /api/verify endpoint
 app.post('/api/verify', async (req: Request, res: Response) => {
   let credential: VerifiableCredential;
+
+  //verifyCredentialWrapper
   
   if (typeof req.body === 'string') {
     try {
@@ -23,6 +27,9 @@ app.post('/api/verify', async (req: Request, res: Response) => {
   } else {
     credential = req.body;
   }
+
+  await verifyCredentialWrapper(credential);
+
 
   try {
     const result = await verifyCredential(credential);
